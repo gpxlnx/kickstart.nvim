@@ -12,7 +12,7 @@ vim.cmd('command! Gsc !stash_and_checkout_master.sh')
 
 vim.cmd('command! -nargs=1 Du !docker-compose up <args> -d')
 vim.cmd('command! -nargs=1 Dr !docker-compose restart <args>')
-
+-- vim.g.netrw_keepdir = 0
 vim.api.nvim_set_keymap('n', '<Leader>y', [[:lua CopyRelativePathToClipboard()<CR>]], { noremap = true, silent = true })
 
 function CopyRelativePathToClipboard()
@@ -50,6 +50,30 @@ return {
 			vim.api.nvim_set_keymap("i", "<C-C>", 'copilot#Accept("<CR>")', { silent = false, expr = true })
 			vim.g.copilot_no_tab_map = true
 			vim.g.copilot_assume_mapped = true
+
+			vim.g.copilot_filetypes = {
+				['*'] = false,
+				['javascript'] = true,
+				['typescript'] = true,
+				['typescriptreact'] = true,
+				['javascriptreact'] = true,
+				['json'] = true,
+				['lua'] = true,
+				['ruby'] = true,
+				['python'] = true,
+				['go'] = true,
+				['rust'] = true,
+				['css'] = true,
+				['scss'] = true,
+				['sass'] = true,
+				['less'] = true,
+				['yaml'] = true,
+				['toml'] = true,
+				['bash'] = true,
+				['markdown'] = true,
+				['sql'] = true,
+				['graphql'] = true,
+			}
 		end,
 	},
 	{
@@ -57,6 +81,8 @@ return {
 		config = function()
 			vim.g.gitblame_date_format = '%r (%d %b %Y)'
 			vim.g.gitblame_message_template = '<author> • <date>'
+
+			vim.api.nvim_set_keymap("n", "<Leader>go", ':GitBlameOpenCommitURL<CR>', { noremap = true, silent = true })
 		end,
 	},
 	{
