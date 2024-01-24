@@ -34,14 +34,11 @@ end
 
 return {
 	{
-		'yuezk/vim-js',
-		'HerringtonDarkholme/yats.vim',
-		'maxmellon/vim-jsx-pretty',
-	},
-	{
 		'nvim-treesitter/nvim-treesitter-context',
 		config = function()
-			require 'treesitter-context'
+			require 'treesitter-context'.setup {
+				max_lines = 5
+			}
 		end,
 	},
 	{
