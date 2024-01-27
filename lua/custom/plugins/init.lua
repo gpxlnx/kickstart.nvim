@@ -16,20 +16,20 @@ vim.cmd('command! -nargs=1 Dr !docker-compose restart <args>')
 vim.api.nvim_set_keymap('n', '<Leader>y', [[:lua CopyRelativePathToClipboard()<CR>]], { noremap = true, silent = true })
 
 function CopyRelativePathToClipboard()
-    local current_file_path = vim.fn.expand("%")
-    vim.fn.system('echo -n ' .. current_file_path .. ' | pbcopy')
-    print("Copied to clipboard: " .. current_file_path)
+	local current_file_path = vim.fn.expand("%")
+	vim.fn.system('echo -n ' .. current_file_path .. ' | pbcopy')
+	print("Copied to clipboard: " .. current_file_path)
 end
 
 vim.api.nvim_set_keymap('n', '<Leader>fa', [[:lua LspFixAllProblems()<CR>]], { noremap = true, silent = true })
 
 function LspFixAllProblems()
-    vim.lsp.buf.code_action({
-        filter = function(a)
-		return a.title == "Fix all auto-fixable problems"
-	end,
-        apply = true
-    })
+	vim.lsp.buf.code_action({
+		filter = function(a)
+			return a.title == "Fix all auto-fixable problems"
+		end,
+		apply = true
+	})
 end
 
 return {
@@ -79,7 +79,8 @@ return {
 			vim.g.gitblame_date_format = '%r (%d %b %Y)'
 			vim.g.gitblame_message_template = '<author> • <date>'
 
-			vim.api.nvim_set_keymap("n", "<Leader>go", ':GitBlameOpenCommitURL<CR>', { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("n", "<Leader>go", ':GitBlameOpenCommitURL<CR>',
+				{ noremap = true, silent = true })
 		end,
 	},
 	{
@@ -93,5 +94,17 @@ return {
 	{
 		'christoomey/vim-tmux-navigator',
 		lazy = false,
+	},
+	{
+		"johmsalas/text-case.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("textcase").setup({})
+			require("telescope").load_extension("textcase")
+		end,
+		keys = {
+			"ga", -- Default invocation prefix
+			{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+		},
 	}
 }
