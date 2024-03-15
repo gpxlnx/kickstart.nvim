@@ -7,6 +7,7 @@ vim.o.relativenumber = true
 vim.o.shell = "/bin/zsh"
 
 vim.cmd('command! Gp !git push -u origin HEAD')
+vim.cmd('command! Gpf !git push -u origin HEAD --force-with-lease')
 vim.cmd('command! -nargs=1 Gcp !git fetch origin && git checkout <args> && git pull')
 vim.cmd('command! Gsc !stash_and_checkout_master.sh')
 
@@ -70,6 +71,10 @@ return {
 				['markdown'] = true,
 				['sql'] = true,
 				['graphql'] = true,
+				['sh'] = true,
+				['zsh'] = true,
+				['fish'] = true,
+				['hbs'] = true,
 			}
 		end,
 	},
