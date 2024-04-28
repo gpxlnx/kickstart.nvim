@@ -48,34 +48,6 @@ return {
 			vim.api.nvim_set_keymap("i", "<C-C>", 'copilot#Accept("<CR>")', { silent = false, expr = true })
 			vim.g.copilot_no_tab_map = true
 			vim.g.copilot_assume_mapped = true
-
-			vim.g.copilot_filetypes = {
-				['*'] = false,
-				['javascript'] = true,
-				['typescript'] = true,
-				['typescriptreact'] = true,
-				['javascriptreact'] = true,
-				['json'] = true,
-				['lua'] = true,
-				['ruby'] = true,
-				['python'] = true,
-				['go'] = true,
-				['rust'] = true,
-				['css'] = true,
-				['scss'] = true,
-				['sass'] = true,
-				['less'] = true,
-				['yaml'] = true,
-				['toml'] = true,
-				['bash'] = true,
-				['markdown'] = true,
-				['sql'] = true,
-				['graphql'] = true,
-				['sh'] = true,
-				['zsh'] = true,
-				['fish'] = true,
-				['hbs'] = true,
-			}
 		end,
 	},
 	{
